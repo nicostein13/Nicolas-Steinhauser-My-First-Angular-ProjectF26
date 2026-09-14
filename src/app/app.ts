@@ -9,4 +9,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('Nicolas-Steinhauser-Learning-AngularF26');
+  fName: string = "Nicolas"
+  count: number = 9;
 }
+
+
