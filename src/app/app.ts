@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {Pokemon} from './shared/model/pokemon';
 
 @Component({
   imports: [RouterOutlet],
