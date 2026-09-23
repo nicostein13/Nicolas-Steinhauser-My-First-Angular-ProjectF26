@@ -1,1 +1,15 @@
-
+<div class="container">
+  @for (pokemon of pokemonList; track pokemon.id) {
+    @if (pokemon.status === 'active'){
+      <div class="pokemon-card">
+        <h3>{{ pokemon.name }}</h3>
+        <p class ="property">{{ pokemon.passive }}</p>
+        <p class="property">{{ pokemon.primaryType }} {{  pokemon.secondaryType }}</p>
+        <p class="property">{{ pokemon.status }}</p>
+    </div>
+    }
+  }
+  @empty {
+    <p>No Pokemon found.</p>
+  }
+</div>
