@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Pokemon } from '../shared/model/pokemon';
 import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
+import { PokemonEvent } from '../pokemon-event';
 
 @Component({
   imports: [
@@ -12,11 +13,15 @@ import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
 })
 export class PokemonList {
   pokemonList: Pokemon[] = [
-    {id: 1, name: 'Charizard', passive: 'Blaze', primaryType: 'Fire', secondaryType: 'Flying', status: 'active'},
-    {id: 2, name: 'Lucario', passive: 'Steadfast or Inner', primaryType: 'Fighting', secondaryType: 'Steel', status: 'active'},
-    {id: 3, name: 'Darkrai', passive: 'Bad Dreams', primaryType: 'Dark', status: 'active'},
-    {id: 4, name: 'Rayquaza', passive: 'Air Lock', primaryType: 'Dragon', secondaryType: 'Flying', status: 'active'},
-    {id: 5, name: 'Cresselia', passive: 'Levitate', primaryType: 'Fairy', status: 'not usable'},
-    {id: 6, name: 'Kyurem', passive: 'Pressure', primaryType: 'Dragon', secondaryType: 'Ice', status: 'inactive'},
+    {id: 1, name: 'Charizard', passive: 'Blaze', primaryType: 'Fire', secondaryType: 'Flying', status: 'active', region: 'Kanto', height: 1.7, weight: 90.5},
+    {id: 2, name: 'Lucario', passive: 'Steadfast or Inner', primaryType: 'Fighting', secondaryType: 'Steel', status: 'active', region: 'Sinnoh', height: 1.2, weight: 54.0},
+    {id: 3, name: 'Darkrai', passive: 'Bad Dreams', primaryType: 'Dark', status: 'active', region: 'Sinnoh', height: 1.5, weight: 50.5},
+    {id: 4, name: 'Rayquaza', passive: 'Air Lock', primaryType: 'Dragon', secondaryType: 'Flying', status: 'active', region: 'Hoenn', height: 7.0, weight: 206.5},
+    {id: 5, name: 'Cresselia', passive: 'Levitate', primaryType: 'Fairy', status: 'not usable', region: 'Sinnoh', height: 1.5, weight: 85.6},
+    {id: 6, name: 'Kyurem', passive: 'Pressure', primaryType: 'Dragon', secondaryType: 'Ice', status: 'inactive', region: 'Unova', height: 3.0, weight: 325.0},
   ]
+  protected readonly PokemonListItem = PokemonListItem;
+
+
+
 }

@@ -1,11 +1,11 @@
 <div class="pokemon-card">
 <h3>{{ pokemon().name }}</h3>
-<p>{{ pokemon().passive }}</p>
+<p>Passive: {{ pokemon().passive }}</p>
 
   @if(pokemon().secondaryType){
-   <p>{{ pokemon().primaryType }}, {{ pokemon().secondaryType }}</p>
+   <p>Types: {{ pokemon().primaryType }}, {{ pokemon().secondaryType }}</p>
   }@else{
-    <p>{{ pokemon().primaryType }}</p>
+    <p>Type: {{ pokemon().primaryType }}</p>
   }
 
   @switch (pokemon().status){
@@ -21,6 +21,15 @@
     @default{
       <span class="defaultstatus">Other</span>
     }
+  }
+
+  @if (!expanded) {
+    <button class="expand" type="button" (click)="toggle()">Expand</button>
+  }@else{
+    <p>Region: {{ pokemon().region }}</p>
+    <p>Height: {{ pokemon().height }}m</p>
+    <p>Weight: {{ pokemon().weight }}kg</p>
+    <button class="expand" type="button" (click)="toggle()">Close</button>
   }
 </div>
 

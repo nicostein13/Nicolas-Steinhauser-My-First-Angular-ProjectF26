@@ -5,4 +5,7 @@ export interface Pokemon {
   primaryType: string;
   secondaryType?: string;
   status: 'active' | 'inactive' | 'not usable';
+  region: string;
+  height: number;
+  weight: number;
 }

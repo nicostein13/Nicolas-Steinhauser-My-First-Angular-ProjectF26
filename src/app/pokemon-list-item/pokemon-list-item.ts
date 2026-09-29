@@ -1,5 +1,6 @@
-import {Component, input} from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Pokemon } from '../shared/model/pokemon';
+import { PokemonEvent } from '../pokemon-event';
 
 @Component({
   imports: [],
@@ -9,4 +10,11 @@ import { Pokemon } from '../shared/model/pokemon';
 })
 export class PokemonListItem {
   pokemon = input.required<Pokemon>();
+  expanded = false;
+  opened = output<Pokemon>();
+
+  toggle(): void{
+    this.expanded = !this.expanded;
+    this.opened.emit(this.pokemon());
+  }
 }
