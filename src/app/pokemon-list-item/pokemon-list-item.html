@@ -1,1 +1,26 @@
-<p>pokemon-list-item works!</p>
+<div class="pokemon-card">
+<h3>{{ pokemon().name }}</h3>
+<p>{{ pokemon().passive }}</p>
+
+  @if(pokemon().secondaryType){
+   <p>{{ pokemon().primaryType }}, {{ pokemon().secondaryType }}</p>
+  }@else{
+    <p>{{ pokemon().primaryType }}</p>
+  }
+
+  @switch (pokemon().status){
+    @case ('active') {
+      <span class="active">Active</span>
+    }
+    @case ('inactive') {
+      <span class="inactive">Inactive</span>
+    }
+    @case ('not usable') {
+      <span class="notusable">Not Usable</span>
+    }
+    @default{
+      <span class="defaultstatus">Other</span>
+    }
+  }
+</div>
+

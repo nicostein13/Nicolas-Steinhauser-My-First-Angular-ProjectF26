@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Pokemon } from '../shared/model/pokemon';
+import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
 
 @Component({
-  imports: [],
+  imports: [
+    PokemonListItem
+  ],
   selector: 'app-pokemon-list',
   styleUrl: './pokemon-list.css',
   templateUrl: './pokemon-list.html',
@@ -13,7 +16,7 @@ export class PokemonList {
     {id: 2, name: 'Lucario', passive: 'Steadfast or Inner', primaryType: 'Fighting', secondaryType: 'Steel', status: 'active'},
     {id: 3, name: 'Darkrai', passive: 'Bad Dreams', primaryType: 'Dark', status: 'active'},
     {id: 4, name: 'Rayquaza', passive: 'Air Lock', primaryType: 'Dragon', secondaryType: 'Flying', status: 'active'},
-    {id: 5, name: 'Cresselia', passive: 'Levitate', primaryType: 'Fairy', status: 'active'},
+    {id: 5, name: 'Cresselia', passive: 'Levitate', primaryType: 'Fairy', status: 'not usable'},
     {id: 6, name: 'Kyurem', passive: 'Pressure', primaryType: 'Dragon', secondaryType: 'Ice', status: 'inactive'},
   ]
 }

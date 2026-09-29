@@ -1,0 +1,19 @@
+.pokemon-card{
+  border: 2px black solid;
+  background-color: lightgrey;
+  width: 300px;
+  padding: 0px;
+  margin: 10px;
+}
+
+.active{
+  background-color: lightgreen;
+}
+
+.inactive{
+  background-color: lightcoral;
+}
+
+.notusable{
+  background-color: lightslategrey;
+}

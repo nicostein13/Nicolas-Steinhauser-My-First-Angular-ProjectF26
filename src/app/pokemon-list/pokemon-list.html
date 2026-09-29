@@ -1,1 +1,9 @@
-<p>pokemon-list works!</p>
+@for (pokemon of pokemonList; track pokemon.id){
+  <app-pokemon-list-item [pokemon]="pokemon"/>
+}@empty{
+  <p>No Pokemon found.</p>
+}
+
+
+
+

@@ -8,5 +8,5 @@ import { Pokemon } from '../shared/model/pokemon';
   templateUrl: './pokemon-list-item.html',
 })
 export class PokemonListItem {
-  name = input.required<Pokemon>();
+  pokemon = input.required<Pokemon>();
 }
