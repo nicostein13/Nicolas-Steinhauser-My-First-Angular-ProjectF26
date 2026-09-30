@@ -1,6 +1,8 @@
 <div class="pokemon-card">
-<h3>{{ pokemon().name }}</h3>
-<p>Passive: {{ pokemon().passive }}</p>
+
+  <h3>{{ pokemon().name }}</h3>
+  <img src="{{ pokemon().image }}" width="120" height="120">
+  <p>Passive: {{ pokemon().passive }}</p>
 
   @if(pokemon().secondaryType){
    <p>Types: {{ pokemon().primaryType }}, {{ pokemon().secondaryType }}</p>

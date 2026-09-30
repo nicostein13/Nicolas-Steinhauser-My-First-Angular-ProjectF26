@@ -1,9 +1,19 @@
-@for (pokemon of pokemonList; track pokemon.id){
-  <app-pokemon-list-item [pokemon]="pokemon"/>
+<div class="container">
+@for (pokemon of pokemonList; track pokemon.id; let isEven = $even, total = $count;){
+  @if($first){
+    <h2 class="count">Showing {{ $count }} Pokemon</h2>
+  }
+  <app-pokemon-list-item
+    [pokemon]="pokemon"
+    [class.even-row]="isEven"
+    [class.odd-row]="!isEven"
+    [class.first-card]="$first"
+    [class.last-card]="$last"
+  />
 }@empty{
   <p>No Pokemon found.</p>
 }
-
+</div>
 
 
 

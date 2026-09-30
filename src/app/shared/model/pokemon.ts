@@ -8,4 +8,5 @@ export interface Pokemon {
   region: string;
   height: number;
   weight: number;
+  image?: string;
 }
