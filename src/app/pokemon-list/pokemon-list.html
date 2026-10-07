@@ -5,6 +5,7 @@
   }
   <app-pokemon-list-item
     [pokemon]="pokemon"
+    (remove)="onRemove($event)"
     [class.even-row]="isEven"
     [class.odd-row]="!isEven"
     [class.first-card]="$first"
@@ -15,7 +16,7 @@
 }
 </div>
 <div>
-  <h1>Active Pokemon</h1>
+  <h1>{{ activeCount() }} Active Pokemon</h1>
   @for(p of pokemonWithActive(); track p.id){
     <h3>{{ p.name }}</h3>
   }

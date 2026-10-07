@@ -13,9 +13,14 @@ export class PokemonListItem {
   pokemon = input.required<Pokemon>();
   expanded = false;
   opened = output<Pokemon>();
+  remove = output<number>();
 
   toggle(): void{
     this.expanded = !this.expanded;
     this.opened.emit(this.pokemon());
+  }
+
+  onRemove(){
+    this.remove.emit(this.pokemon().id);
   }
 }

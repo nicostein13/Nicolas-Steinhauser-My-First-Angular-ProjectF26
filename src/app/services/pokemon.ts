@@ -26,9 +26,15 @@ export class PokemonService {
   pokemonWithActive = computed(()=>
                                 this.pokemon().filter(p => p.status === 'active'));
 
+  activeCount = computed(()=> this.pokemonWithActive().length);
+
   constructor(){
     effect(()=> {
       console.log('Pokemon count is now', this.pokemonCount());
     });
+  }
+
+  removePokemon(id: number){
+    this.pokemon.update(list =>list.filter(i => i.id != id));
   }
 }

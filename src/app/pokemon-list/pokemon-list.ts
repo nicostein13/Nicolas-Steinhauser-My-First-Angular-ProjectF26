@@ -20,6 +20,12 @@ export class PokemonList {
 
   pokemonWithActive = this.PokemonService.pokemonWithActive;
 
+  activeCount = this.PokemonService.activeCount;
+
+  onRemove(id: number){
+    this.PokemonService.removePokemon(id);
+  }
+
   protected readonly PokemonListItem = PokemonListItem;
 
 }
