@@ -1,4 +1,4 @@
-import {Service, signal} from '@angular/core';
+import {Service, signal, computed, effect} from '@angular/core';
 import { Pokemon } from '../shared/model/pokemon';
 import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
 import { PokemonEvent } from '../pokemon-event';
@@ -16,4 +16,19 @@ export class PokemonService {
   ]);
 
   pokemonList = this.pokemon.asReadonly();
+
+  addPokemon(newPokemon : Pokemon){
+    this.pokemon.update(list => [...list, newPokemon]);
+  }
+
+  pokemonCount = computed(()=>this.pokemon().length);
+
+  pokemonWithActive = computed(()=>
+                                this.pokemon().filter(p => p.status === 'active'));
+
+  constructor(){
+    effect(()=> {
+      console.log('Pokemon count is now', this.pokemonCount());
+    });
+  }
 }

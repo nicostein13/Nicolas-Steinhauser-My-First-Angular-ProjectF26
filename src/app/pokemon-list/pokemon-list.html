@@ -14,6 +14,10 @@
   <p>No Pokemon found.</p>
 }
 </div>
-
-
+<div>
+  <h1>Active Pokemon</h1>
+  @for(p of pokemonWithActive(); track p.id){
+    <h3>{{ p.name }}</h3>
+  }
+</div>
 

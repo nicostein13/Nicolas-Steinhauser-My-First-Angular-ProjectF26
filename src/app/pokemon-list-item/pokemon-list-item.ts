@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { Pokemon } from '../shared/model/pokemon';
 import { PokemonEvent } from '../pokemon-event';
+import {PokemonService} from '../services/pokemon';
 
 @Component({
   imports: [],

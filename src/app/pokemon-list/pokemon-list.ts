@@ -18,6 +18,8 @@ export class PokemonList {
 
   pokemonList = this.PokemonService.pokemonList;
 
+  pokemonWithActive = this.PokemonService.pokemonWithActive;
+
   protected readonly PokemonListItem = PokemonListItem;
 
 }
