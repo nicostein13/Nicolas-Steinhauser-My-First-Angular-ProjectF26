@@ -1,5 +1,5 @@
 <div class="container">
-@for (pokemon of pokemonList; track pokemon.id; let isEven = $even, total = $count;){
+@for (pokemon of pokemonList(); track pokemon.id; let isEven = $even, total = $count;){
   @if($first){
     <h2 class="count">Showing {{ $count }} Pokemon</h2>
   }
