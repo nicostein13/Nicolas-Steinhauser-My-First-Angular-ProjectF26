@@ -16,6 +16,8 @@ export const appConfig: ApplicationConfig = {
         defaultCategory: 'active',
       },
     },
+    //To switch back to the real service either remove the useClass below or
+    //change MockPokemonService to PokemonService
     {provide: PokemonService, useClass: MockPokemonService},
   ],
 };
