@@ -1,4 +1,4 @@
-export interface Pokemon {
+interface Pokemon {
   id: number;
   name: string;
   passive: string;
@@ -10,3 +10,5 @@ export interface Pokemon {
   weight: number;
   image?: string;
 }
+
+export default Pokemon

@@ -1,10 +1,14 @@
-import {Service, signal, computed, effect} from '@angular/core';
-import { Pokemon } from '../shared/model/pokemon';
+import {Injectable, Service, signal, computed, effect, inject} from '@angular/core';
+import Pokemon from '../shared/model/pokemon';
 import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
 import { PokemonEvent } from '../pokemon-event';
+import {POKEMON_CONFIG} from '../config/pokemon-config';
 
-@Service()
+@Injectable()
 export class PokemonService {
+
+  private config = inject(POKEMON_CONFIG);
+
   private pokemon = signal<Pokemon[]>([
     {id: 1, name: 'Charizard', image:'images/Charizard.png' , passive: 'Blaze', primaryType: 'Fire', secondaryType: 'Flying', status: 'active', region: 'Kanto', height: 1.7, weight: 90.5},
     {id: 2, name: 'Lucario', image:'images/Lucario.png', passive: 'Steadfast or Inner', primaryType: 'Fighting', secondaryType: 'Steel', status: 'active', region: 'Sinnoh', height: 1.2, weight: 54.0},
@@ -23,8 +27,16 @@ export class PokemonService {
 
   pokemonCount = computed(()=>this.pokemon().length);
 
-  pokemonWithActive = computed(()=>
-                                this.pokemon().filter(p => p.status === 'active'));
+
+  selectedStatus = signal<string>(this.config.defaultCategory);
+
+  pokemonWithActive = computed(()=> {
+    const status = this.selectedStatus();
+    if (status === 'all') {
+      return this.pokemon();
+    }
+    return this.pokemon().filter(p => p.status === status);
+  });
 
   activeCount = computed(()=> this.pokemonWithActive().length);
 

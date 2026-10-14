@@ -1,5 +1,5 @@
 import { Component, input, output, inject } from '@angular/core';
-import { Pokemon } from '../shared/model/pokemon';
+import Pokemon from '../shared/model/pokemon';
 import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
 import { PokemonEvent } from '../pokemon-event';
 import { PokemonService } from '../services/pokemon';
