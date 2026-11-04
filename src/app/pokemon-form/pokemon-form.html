@@ -1,3 +1,4 @@
+<h2>{{ id() ? 'Edit Pokemon' : 'Add Pokemon' }}</h2>
 <form [formGroup]="pokemonForm" (ngSubmit)="onSubmit()">
   <input formControlName="name" placeholder="Name"/>
   @if (pokemonForm.controls.name.touched && pokemonForm.controls.name.invalid){
@@ -8,20 +9,20 @@
       <p class="error">Name must be at least 3 characters</p>
     }
   }
-  <input formControlPassive="passive" placeholder="Passive">
+  <input formControlName="passive" placeholder="Passive">
   @if(pokemonForm.controls.passive.touched && pokemonForm.controls.passive.hasError('required')){
     <p class="error">Passive Type is required.</p>
   }
-  <input formControlprimaryType="primaryType" placeholder="PrimaryType"/>
+  <input formControlName="primaryType" placeholder="PrimaryType"/>
   @if(pokemonForm.controls.primaryType.touched && pokemonForm.controls.primaryType.hasError('required')){
     <p class="error">Primary Type is required.</p>
   }
-  <input formControlRegion="region" placeholder="Region"/>
+  <input formControlName="region" placeholder="Region"/>
   @if(pokemonForm.controls.region.touched && pokemonForm.controls.region.hasError('required')){
     <p class="error">Region Type is required.</p>
   }
 
   <button type="submit" [disabled]="pokemonForm.invalid">
-    Add Pokemon
+    {{ id() ? 'Save Changes' : 'Add Pokemon' }}
   </button>
 </form>

@@ -25,6 +25,10 @@ export class PokemonService {
     this.pokemon.update(list => [...list, newPokemon]);
   }
 
+  updatePokemon(p: Pokemon): void{
+    this.pokemon.update(list => list.map(item=> item.id === p.id ? p : item));
+  }
+
   pokemonCount = computed(()=>this.pokemon().length);
 
 

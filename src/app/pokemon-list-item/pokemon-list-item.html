@@ -26,6 +26,7 @@
       <span class="defaultstatus">Other</span>
     }
   }
+  <button [routerLink]="['/pokemon/edit', pokemon().id]">Edit</button>
   <button type="button" (click)="onRemove()">Remove</button>
   @if (!expanded) {
     <button class="expand" type="button" (click)="toggle()">Expand</button>

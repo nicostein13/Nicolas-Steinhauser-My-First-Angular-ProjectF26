@@ -18,6 +18,6 @@ export const appConfig: ApplicationConfig = {
     },
     //To switch back to the real service either remove the useClass below or
     //change MockPokemonService to PokemonService
-    {provide: PokemonService, useClass: MockPokemonService},
+    {provide: PokemonService, useClass: PokemonService},
   ],
 };
