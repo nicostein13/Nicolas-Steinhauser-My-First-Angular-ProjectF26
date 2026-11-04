@@ -1,6 +1,8 @@
 <div class="pokemon-card">
 
-  <h3>{{ pokemon().name }}</h3>
+  <a [routerLink]="['/pokemon', pokemon().id]">
+    {{ pokemon().name }}
+  </a>
   <img src="{{ pokemon().image }}" width="120" height="120">
   <p>Passive: {{ pokemon().passive }}</p>
 
