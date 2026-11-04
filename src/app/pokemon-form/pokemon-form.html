@@ -8,6 +8,9 @@
     @if(pokemonForm.controls.name.hasError('minlength')){
       <p class="error">Name must be at least 3 characters</p>
     }
+    @if(pokemonForm.controls.name.hasError('notCapitalized')){
+      <p class="error">Name must start with a capital letter.</p>
+    }
   }
   <input formControlName="passive" placeholder="Passive">
   @if(pokemonForm.controls.passive.touched && pokemonForm.controls.passive.hasError('required')){
@@ -17,9 +20,16 @@
   @if(pokemonForm.controls.primaryType.touched && pokemonForm.controls.primaryType.hasError('required')){
     <p class="error">Primary Type is required.</p>
   }
+  <input formControlName="secondaryType" placeholder="SecondaryType"/>
   <input formControlName="region" placeholder="Region"/>
   @if(pokemonForm.controls.region.touched && pokemonForm.controls.region.hasError('required')){
     <p class="error">Region Type is required.</p>
+  }
+
+  @if(pokemonForm.hasError('sameTypes')
+    && pokemonForm.controls.primaryType.touched
+    && pokemonForm.controls.secondaryType.touched){
+    <p class="error">Primary and secondary type can't be the same</p>
   }
 
   <button type="submit" [disabled]="pokemonForm.invalid">
