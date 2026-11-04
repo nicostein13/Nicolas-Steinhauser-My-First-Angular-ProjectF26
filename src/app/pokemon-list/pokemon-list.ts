@@ -3,10 +3,13 @@ import Pokemon from '../shared/model/pokemon';
 import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
 import { PokemonEvent } from '../pokemon-event';
 import { PokemonService } from '../services/pokemon';
+import {RouterLink} from '@angular/router';
+
 
 @Component({
   imports: [
-    PokemonListItem
+    PokemonListItem,
+    RouterLink
   ],
   selector: 'app-pokemon-list',
   styleUrl: './pokemon-list.css',

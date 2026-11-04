@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import Pokemon from './shared/model/pokemon';
-import {PokemonList} from './pokemon-list/pokemon-list';
+import { PokemonList } from './pokemon-list/pokemon-list';
+import { Navbar } from './navbar/navbar';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Navbar],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
