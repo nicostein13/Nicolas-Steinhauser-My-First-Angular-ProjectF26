@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 export interface PokemonConfig {
-  apiBaseUrl: string;
+  apiBaseUrl: 'https://pokeapi.co/api/v2';
   defaultCategory: string;
 }
 

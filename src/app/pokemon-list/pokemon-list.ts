@@ -9,7 +9,6 @@ import {RouterLink} from '@angular/router';
 @Component({
   imports: [
     PokemonListItem,
-    RouterLink
   ],
   selector: 'app-pokemon-list',
   styleUrl: './pokemon-list.css',
