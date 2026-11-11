@@ -4,15 +4,17 @@ import { routes } from './app.routes';
 import { PokemonService } from './services/pokemon';
 import { MockPokemonService } from './services/mock-pokemon-service';
 import { POKEMON_CONFIG } from './config/pokemon-config';
+import {provideHttpClient} from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideHttpClient(),
     provideRouter(routes, withComponentInputBinding()),
     {
       provide: POKEMON_CONFIG,
       useValue: {
-        apiBaseUrl: 'https://pokemon.display.com/api',
+        apiBaseUrl: 'https://pokeapi.co/api/v2',
         defaultCategory: 'active',
       },
     },

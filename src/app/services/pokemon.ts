@@ -3,11 +3,32 @@ import Pokemon from '../shared/model/pokemon';
 import { PokemonListItem } from '../pokemon-list-item/pokemon-list-item';
 import { PokemonEvent } from '../pokemon-event';
 import {POKEMON_CONFIG} from '../config/pokemon-config';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin, switchMap, map } from 'rxjs';
+
+
+export interface PokemonListResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: { name: string; url: string }[];
+}
+
+export interface PokemonDetailResponse {
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  types: { slot: number; type: { name: string } }[];
+  abilities: { ability: { name: string }; is_hidden: boolean }[];
+  sprites: { front_default: string | null };
+}
 
 @Injectable()
 export class PokemonService {
 
   private config = inject(POKEMON_CONFIG);
+  private http = inject(HttpClient);
 
   private pokemon = signal<Pokemon[]>([
     {id: 1, name: 'Charizard', image:'images/Charizard.png' , passive: 'Blaze', primaryType: 'Fire', secondaryType: 'Flying', status: 'active', region: 'Kanto', height: 1.7, weight: 90.5},
@@ -45,6 +66,7 @@ export class PokemonService {
   activeCount = computed(()=> this.pokemonWithActive().length);
 
   constructor(){
+    this.loadPokemon();
     effect(()=> {
       console.log('Pokemon count is now', this.pokemonCount());
     });
@@ -53,4 +75,31 @@ export class PokemonService {
   removePokemon(id: number){
     this.pokemon.update(list =>list.filter(i => i.id != id));
   }
+
+  loadPokemon(): void{
+    this.http.get<PokemonListResponse>(`${this.config.apiBaseUrl}/pokemon?limit=20`)
+      .pipe(switchMap(list => forkJoin(list.results.map(p => this.http.get<PokemonDetailResponse>(`${this.config.apiBaseUrl}/pokemon/${p.name}`)))),
+      map(details => details.map(d => this.toPokemon(d)))
+  )
+    .subscribe({
+      next: list => this.pokemon.set(list),
+      error: err => console.error('Failed to load Pokemon', err)
+    })
+  }
+
+  private toPokemon(d: PokemonDetailResponse): Pokemon {
+    return{
+      id: d.id,
+      name: d.name,
+      passive: d.abilities[0]?.ability.name ?? 'none',
+      primaryType: d.types[0]?.type.name ?? 'unkown',
+      secondaryType: d.types[1]?.type.name,
+      status: 'active',
+      region: 'Unknown',
+      height: d.height,
+      weight: d.weight,
+      image: d.sprites.front_default ?? undefined
+    }
+  }
 }
+
