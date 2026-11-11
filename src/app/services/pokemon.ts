@@ -29,6 +29,8 @@ export class PokemonService {
 
   private config = inject(POKEMON_CONFIG);
   private http = inject(HttpClient);
+  error = signal<string | null>(null);
+  isLoading = signal(false);
 
   private pokemon = signal<Pokemon[]>([
     {id: 1, name: 'Charizard', image:'images/Charizard.png' , passive: 'Blaze', primaryType: 'Fire', secondaryType: 'Flying', status: 'active', region: 'Kanto', height: 1.7, weight: 90.5},
@@ -76,15 +78,25 @@ export class PokemonService {
     this.pokemon.update(list =>list.filter(i => i.id != id));
   }
 
-  loadPokemon(): void{
-    this.http.get<PokemonListResponse>(`${this.config.apiBaseUrl}/pokemon?limit=20`)
-      .pipe(switchMap(list => forkJoin(list.results.map(p => this.http.get<PokemonDetailResponse>(`${this.config.apiBaseUrl}/pokemon/${p.name}`)))),
+  loadPokemon() {
+    this.isLoading.set(true);
+    this.http.get<PokemonListResponse>(`${this.config.apiBaseUrl}/pokemon`,{
+      params: {limit: 20},
+      })
+      .pipe(
+        map(res => res.results),
+        switchMap(items => forkJoin(items.map(p => this.http.get<PokemonDetailResponse>(`${this.config.apiBaseUrl}/pokemon/${p.name}`)))),
       map(details => details.map(d => this.toPokemon(d)))
-  )
-    .subscribe({
-      next: list => this.pokemon.set(list),
-      error: err => console.error('Failed to load Pokemon', err)
-    })
+      ).subscribe({
+      next: (list) =>{
+        this.pokemon.set(list);
+        this.isLoading.set(false);
+      },
+      error: () => {
+        this.error.set('Could not load data');
+        this.isLoading.set(false);
+      },
+    });
   }
 
   private toPokemon(d: PokemonDetailResponse): Pokemon {

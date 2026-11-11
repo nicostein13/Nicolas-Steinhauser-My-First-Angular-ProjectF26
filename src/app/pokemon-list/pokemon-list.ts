@@ -24,6 +24,10 @@ export class PokemonList {
 
   activeCount = this.PokemonService.activeCount;
 
+  isLoading = this.PokemonService.isLoading;
+
+  error = this.PokemonService.error;
+
   onRemove(id: number){
     this.PokemonService.removePokemon(id);
   }
