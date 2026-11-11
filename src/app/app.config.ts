@@ -4,12 +4,13 @@ import { routes } from './app.routes';
 import { PokemonService } from './services/pokemon';
 import { MockPokemonService } from './services/mock-pokemon-service';
 import { POKEMON_CONFIG } from './config/pokemon-config';
-import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import { loadingInterceptorInterceptor } from './loading-interceptor-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([loadingInterceptorInterceptor])),
     provideRouter(routes, withComponentInputBinding()),
     {
       provide: POKEMON_CONFIG,

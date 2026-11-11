@@ -75,7 +75,7 @@ export class PokemonService {
   }
 
   removePokemon(id: number){
-    this.pokemon.update(list =>list.filter(i => i.id != id));
+    this.pokemon.update(list =>list.filter(item => item.id != id));
   }
 
   loadPokemon() {
