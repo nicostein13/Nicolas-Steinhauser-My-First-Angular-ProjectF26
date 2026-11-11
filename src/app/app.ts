@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import Pokemon from './shared/model/pokemon';
 import { PokemonList } from './pokemon-list/pokemon-list';
 import { Navbar } from './navbar/navbar';
+import {ErrorService} from './services/error';
 
 @Component({
   imports: [RouterOutlet, Navbar],
@@ -11,6 +12,12 @@ import { Navbar } from './navbar/navbar';
   templateUrl: './app.html',
 })
 export class App {
+  private errorService = inject(ErrorService);
+  errorMessage = this.errorService.message;
+
+  dismiss(): void{
+    this.errorService.clear();
+  }
 }
 //export class AppComponent{
  // title = 'PokeDex';

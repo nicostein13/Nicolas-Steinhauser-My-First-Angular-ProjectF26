@@ -8,6 +8,15 @@
   padding: 5px;
  }
 
+.error-banner {
+  background: #f8d7da;
+  color: #842029;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 @media (max-width: 768px){
   width: 100%;

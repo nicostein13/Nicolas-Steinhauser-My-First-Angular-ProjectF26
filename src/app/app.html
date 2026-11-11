@@ -1,3 +1,9 @@
+@if (errorMessage()){
+  <div class="error-banner">
+    <span>{{ errorMessage() }}</span>
+    <button type="button" (click)="dismiss()">Dismiss</button>
+  </div>
+}
 <app-navbar/>
 <router-outlet/>
 
