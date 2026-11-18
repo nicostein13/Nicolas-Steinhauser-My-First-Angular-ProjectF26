@@ -30,3 +30,8 @@ chunk-54PUP7A2.js
 
 ### What changed: 
 I converted every route except the landing page loadComponent with a dynamic import(), so now the detail and form page have their own lazy chunks that only load the first time a user actually visits them. The landing page will stay eager because it is the first thing every user sees when loading up the page.
+
+## Lifecycle
+It threw an error, because id is an input.required() and Angular has not set the input values yet when the constructor runs.
+
+Clicking the back browser back button, the pokemon button and the Add Button all caused ngOnDestroy to run. This means that the router destroys a component when the user leaves it and creates a new instance when the user returns to it, instead of keeping the old page alive.
