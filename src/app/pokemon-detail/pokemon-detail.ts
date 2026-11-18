@@ -18,4 +18,18 @@ export class PokemonDetail {
   );
 
 
+  private openedAt = 0;
+
+  ngOnInit(){
+    this.openedAt = Date.now();
+    const pokemon = this.service.pokemonList().find(p => p.id === Number(this.id()))
+    console.log('[lifecycle] opened:', pokemon?.name );
+  }
+
+  ngOnDestroy(){
+    const seconds = Math.round((Date.now() - this.openedAt) / 1000);
+    const pokemon = this.service.pokemonList().find(p => p.id === Number(this.id()))
+    console.log(`[lifecycle] closed: ${pokemon?.name} after ${seconds} seconds`);
+  }
+
 }
