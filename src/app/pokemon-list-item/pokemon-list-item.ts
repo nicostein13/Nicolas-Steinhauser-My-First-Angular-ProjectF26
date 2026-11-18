@@ -3,10 +3,12 @@ import Pokemon from '../shared/model/pokemon';
 import { RouterLink } from '@angular/router';
 import { PokemonEvent } from '../pokemon-event';
 import {PokemonService} from '../services/pokemon';
-import {DecimalPipe, LowerCasePipe, SlicePipe, TitleCasePipe, UpperCasePipe} from '@angular/common';
+import {DecimalPipe, SlicePipe, TitleCasePipe, UpperCasePipe} from '@angular/common';
+import {StatusLabelPipe} from '../pipes/status-label-pipe';
+import {TypeLabelPipe} from '../pipes/type-label-pipe';
 
 @Component({
-  imports: [RouterLink, TitleCasePipe, UpperCasePipe, SlicePipe, DecimalPipe, LowerCasePipe],
+  imports: [RouterLink, TitleCasePipe, UpperCasePipe, SlicePipe, DecimalPipe, StatusLabelPipe, TypeLabelPipe],
   selector: 'app-pokemon-list-item',
   styleUrl: './pokemon-list-item.css',
   templateUrl: './pokemon-list-item.html',

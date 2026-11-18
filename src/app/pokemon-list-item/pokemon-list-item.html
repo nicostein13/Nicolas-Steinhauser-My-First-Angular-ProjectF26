@@ -7,17 +7,17 @@
   <p>Passive: {{ pokemon().passive | slice:0:20 | titlecase }}</p>
 
   @if(pokemon().secondaryType){
-   <p>Types: {{ pokemon().primaryType | uppercase }}, {{ pokemon().secondaryType | uppercase }}</p>
+   <p>Types: {{ pokemon().primaryType | typeLabel }}, {{ pokemon().secondaryType | typeLabel}}</p>
   }@else{
-    <p>Type: {{ pokemon().primaryType | uppercase }}</p>
+    <p>Type: {{ pokemon().primaryType | typeLabel }}</p>
   }
 
   @switch (pokemon().status){
     @case ('active') {
-      <span class="active">Active</span>
+      <span class="active">{{  pokemon().status | statusLabel: 'short' | uppercase}}</span>
     }
     @case ('inactive') {
-      <span class="inactive">Inactive</span>
+      <span class="inactive"> {{ pokemon().status | statusLabel: 'short' | uppercase }}</span>
     }
     @case ('not usable') {
       <span class="notusable">Not Usable</span>
