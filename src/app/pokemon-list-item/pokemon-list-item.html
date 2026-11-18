@@ -1,15 +1,15 @@
 <div class="pokemon-card">
 
   <a [routerLink]="['/pokemon', pokemon().id]">
-    {{ pokemon().name }}
+    {{ pokemon().name | titlecase }}
   </a>
   <img src="{{ pokemon().image }}" width="120" height="120">
-  <p>Passive: {{ pokemon().passive }}</p>
+  <p>Passive: {{ pokemon().passive | slice:0:20 | titlecase }}</p>
 
   @if(pokemon().secondaryType){
-   <p>Types: {{ pokemon().primaryType }}, {{ pokemon().secondaryType }}</p>
+   <p>Types: {{ pokemon().primaryType | uppercase }}, {{ pokemon().secondaryType | uppercase }}</p>
   }@else{
-    <p>Type: {{ pokemon().primaryType }}</p>
+    <p>Type: {{ pokemon().primaryType | uppercase }}</p>
   }
 
   @switch (pokemon().status){
@@ -32,8 +32,8 @@
     <button class="expand" type="button" (click)="toggle()">Expand</button>
   }@else{
     <p>Region: {{ pokemon().region }}</p>
-    <p>Height: {{ pokemon().height }}m</p>
-    <p>Weight: {{ pokemon().weight }}kg</p>
+    <p>Height: {{ pokemon().height | number:'1.0-1' }}m</p>
+    <p>Weight: {{ pokemon().weight | number:'1.0-1' }}kg</p>
     <button class="expand" type="button" (click)="toggle()">Close</button>
   }
 </div>
