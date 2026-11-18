@@ -1,6 +1,6 @@
 <h2>{{ id() ? 'Edit Pokemon' : 'Add Pokemon' }}</h2>
 <form [formGroup]="pokemonForm" (ngSubmit)="onSubmit()">
-  <input formControlName="name" placeholder="Name"/>
+  <input #firstField formControlName="name" placeholder="Name"/>
   @if (pokemonForm.controls.name.touched && pokemonForm.controls.name.invalid){
     @if(pokemonForm.controls.name.hasError('required')){
     <p class="error">A name is required</p>

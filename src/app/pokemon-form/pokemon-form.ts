@@ -1,4 +1,4 @@
-import {Component, inject, input, OnInit} from '@angular/core';
+import {afterNextRender, Component, ElementRef, inject, input, OnInit, viewChild} from '@angular/core';
 import {ReactiveFormsModule, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { PokemonService } from '../services/pokemon';
 import { Router } from '@angular/router';
@@ -73,5 +73,14 @@ export class PokemonForm implements OnInit{
     }
     this.pokemonForm.reset({name: '', passive: '', primaryType: '', secondaryType: '', region: ''});
     this.router.navigate(['/pokemon']);
+  }
+
+  private firstField = viewChild<ElementRef<HTMLInputElement>>('firstField');
+
+  //Not in ngOnInit because the input does not exist in the DOM until Angular rendered the template.
+  constructor(){
+    afterNextRender(() =>{
+      this.firstField()?.nativeElement.focus();
+    })
   }
 }
